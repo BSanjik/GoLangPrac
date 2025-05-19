@@ -13,6 +13,9 @@ func main() {
 	var pracNum int
 	fmt.Scan(&pracNum)
 	switch pracNum {
+	case -2:
+		// global scope
+		sayHello()
 	case -1:
 		var weight float64
 		var height float64
@@ -51,6 +54,7 @@ func calculateBMI(weight float64, height float64) float64 {
 	return bmi
 }
 
+//classifyBMI - classify BMI
 func classifyBMI(weight float64, height float64) (string, float64) {
 
 	result := calculateBMI(weight, height)
