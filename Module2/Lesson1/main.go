@@ -13,6 +13,11 @@ func main() {
 	var pracNum int
 	fmt.Scan(&pracNum)
 	switch pracNum {
+	case -1:
+		var weight float64
+		var height float64
+		fmt.Scan(&weight, &height)
+		fmt.Println(classifyBMI(weight, height))
 	case 0:
 		var login string
 		var pass string
@@ -37,6 +42,29 @@ func main() {
 		fmt.Scan(&n)
 		fmt.Println(prac3(n))
 	}
+}
+
+//calculateBMI - calculating BMI
+func calculateBMI(weight float64, height float64) float64 {
+	heightM := height / 100
+	bmi := weight / (heightM * heightM)
+	return bmi
+}
+
+func classifyBMI(weight float64, height float64) (string, float64) {
+
+	result := calculateBMI(weight, height)
+	var resultStr string
+	if result < 18.5 {
+		resultStr = "Недовес"
+	} else if result >= 18.5 && result <= 24.9 {
+		resultStr = "Норма"
+	} else if result >= 25.0 && result <= 29.9 {
+		resultStr = "Избыточный вес"
+	} else {
+		resultStr = "Жирный"
+	}
+	return resultStr, result
 }
 
 func isAuth(login string, pass string) bool {
