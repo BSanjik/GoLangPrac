@@ -108,9 +108,8 @@ func main() {
 			if err != nil {
 				fmt.Println("Error")
 				return
-			} else {
-				fmt.Println(prac7(text))
 			}
+			fmt.Println(prac7(text))
 		case 8:
 			strings := []string{"apple", "banana", "kiwi", "pineapple", "grape", "strawberry"}
 			fmt.Println(prac8(strings))
@@ -226,7 +225,7 @@ func prac7(a string) string {
 	var result string
 	revers := []rune(a)
 	for i := len(revers) - 1; i >= 0; i-- {
-		result = string(revers[i])
+		result += string(revers[i])
 	}
 	return result
 }
