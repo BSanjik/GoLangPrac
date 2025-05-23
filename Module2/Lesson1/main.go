@@ -294,6 +294,6 @@ func prac14(nums []int) []int {
 	return result
 }
 
-func prac15(text string) string {
-	// neponyatno
-}
+// func prac15(text string) string {
+// 	// neponyatno
+// }
