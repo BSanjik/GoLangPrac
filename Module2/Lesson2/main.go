@@ -27,8 +27,27 @@ func main() {
 	// }
 	// fmt.Println(ok)
 
-	country := map[string]string{"Kazakhstan": "Astana", "Turkey": "Istambul", "Russia": "Moscow"}
-	for i, j := range country {
-		fmt.Println("The capital of ", i, "is:", j)
+	// country := map[string]string{"Kazakhstan": "Astana", "Turkey": "Istambul", "Russia": "Moscow"}
+	// for i, j := range country {
+	// 	fmt.Println("The capital of ", i, "is:", j)
+	// }
+
+	// map1 := make(map[string]string)
+	// map2 := map[string]string{}
+	// var map3 map[string]string // error
+	// map3["asd"] = "aSD"
+
+	var text string
+	fmt.Scan(&text)
+	result := make(map[string]int)
+	for _, i := range text {
+		_, ok := result[string(i)]
+		if ok {
+			result[string(i)]++
+		} else {
+			result[string(i)] = 1
+		}
 	}
+	fmt.Println(result)
+
 }
