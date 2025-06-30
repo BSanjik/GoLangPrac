@@ -32,3 +32,8 @@ func main() {
 		log.Fatalf("Error:%v", err)
 	}
 }
+
+//curl request
+// curl -X POST http://localhost:7777/products \
+// -H "Content-Type: application/json" \
+// -d '{"name": "БМВ М5", "stock": 1000, "price": 85000000.0}'

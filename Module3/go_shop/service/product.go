@@ -24,3 +24,7 @@ func (s *ProductService) ReturnAllProducts() ([]model.Product, error) {
 
 	return result, nil
 }
+
+func (s *ProductService) CreateProduct(newProduct model.Product) error {
+	return s.Storage.CreateProduct(newProduct)
+}

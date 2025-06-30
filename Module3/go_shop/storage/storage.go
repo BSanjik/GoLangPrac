@@ -3,7 +3,8 @@ package storage
 import "go_shop/model"
 
 type ProductStorage struct {
-	data []model.Product
+	data   []model.Product
+	lastID int
 }
 
 var products []model.Product = []model.Product{
@@ -23,6 +24,7 @@ var products []model.Product = []model.Product{
 
 func NewProductStorage() *ProductStorage {
 	return &ProductStorage{
-		data: products,
+		data:   products,
+		lastID: len(products),
 	}
 }
