@@ -7,6 +7,11 @@ type Product struct {
 	Price float64 `json:"price"`
 }
 
+type BuyProduct struct {
+	Name  string `json:"name"`
+	Stock int    `json:"stock"`
+}
+
 // слоистая архитектура
 // 1)handler/controller(обработка запроса)
 // 2)service(бизнес логика)

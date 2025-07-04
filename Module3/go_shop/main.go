@@ -18,6 +18,7 @@ func main() {
 	//все запросы от клиента фронт
 	mux := http.NewServeMux()
 	mux.Handle("/products", h)
+	mux.Handle("/products/buy", h)
 
 	server := http.Server{
 		Addr:         ":8080",

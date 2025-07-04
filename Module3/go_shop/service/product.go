@@ -28,3 +28,14 @@ func (s *ProductService) ReturnAllProducts() ([]model.Product, error) {
 func (s *ProductService) CreateProduct(newProduct model.Product) error {
 	return s.Storage.CreateProduct(newProduct)
 }
+
+func (s *ProductService) BuyProduct(name string, stock int) (float64, error) {
+	price, err := s.Storage.BuyProduct(name, stock)
+	if err != nil {
+		log.Println("Error storage: ", err)
+		return 0, err
+	}
+
+	total := price * float64(stock)
+	return total, nil
+}
