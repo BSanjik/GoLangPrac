@@ -25,8 +25,8 @@ func (h *ProductHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		h.GetAllProducts(w, r)
 	case r.Method == http.MethodPost && r.URL.Path == "/products":
 		h.CreateProduct(w, r)
-	case r.Method == http.MethodPost && r.URL.Path == "/products/buy":
-		h.BuyProduct(w, r)
+	// case r.Method == http.MethodPost && r.URL.Path == "/products/buy":
+	// 	h.BuyProduct(w, r)
 	default:
 		http.NotFound(w, r)
 	}
@@ -51,7 +51,7 @@ func (h *ProductHandler) GetAllProducts(w http.ResponseWriter, r *http.Request) 
 	json.NewEncoder(w).Encode(result)
 }
 
-// Create Product
+// // Create Product
 func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	var newProduct model.Product
 	err := json.NewDecoder(r.Body).Decode(&newProduct)
@@ -77,31 +77,31 @@ func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Success")
 }
 
-// Buy Product
-func (h *ProductHandler) BuyProduct(w http.ResponseWriter, r *http.Request) {
-	var req model.BuyProduct
+// // Buy Product
+// func (h *ProductHandler) BuyProduct(w http.ResponseWriter, r *http.Request) {
+// 	var req model.BuyProduct
 
-	err := json.NewDecoder(r.Body).Decode(&req)
-	if err != nil || len(req.Name) == 0 || req.Stock <= 0 {
-		log.Println("Error", err)
-		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "Bad Request")
-		return
-	}
-	defer r.Body.Close()
+// 	err := json.NewDecoder(r.Body).Decode(&req)
+// 	if err != nil || len(req.Name) == 0 || req.Stock <= 0 {
+// 		log.Println("Error", err)
+// 		w.WriteHeader(http.StatusBadRequest)
+// 		fmt.Fprintf(w, "Bad Request")
+// 		return
+// 	}
+// 	defer r.Body.Close()
 
-	total, err := h.Service.BuyProduct(req.Name, req.Stock)
-	if err != nil {
-		log.Printf("Error buying product: %v", err)
-		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "Purchase failed: %v", err)
-		return
-	}
+// 	total, err := h.Service.BuyProduct(req.Name, req.Stock)
+// 	if err != nil {
+// 		log.Printf("Error buying product: %v", err)
+// 		w.WriteHeader(http.StatusBadRequest)
+// 		fmt.Fprintf(w, "Purchase failed: %v", err)
+// 		return
+// 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"message":     fmt.Sprintf("Successfully bought %d x %s", req.Stock, req.Name),
-		"total_price": total,
-	})
-}
+// 	w.Header().Set("Content-Type", "application/json")
+// 	w.WriteHeader(http.StatusOK)
+// 	json.NewEncoder(w).Encode(map[string]interface{}{
+// 		"message":     fmt.Sprintf("Successfully bought %d x %s", req.Stock, req.Name),
+// 		"total_price": total,
+// 	})
+// }
